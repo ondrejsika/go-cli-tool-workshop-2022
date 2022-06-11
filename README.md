@@ -218,3 +218,66 @@ Commit changes
 git add .
 git commit -m "refactor: Rewrite using Cobra"
 ```
+
+## Create version command
+
+mkdir
+
+```
+mkdir cmd/version
+```
+
+Create `cmd/version/version.go`
+
+```go
+package version
+
+import (
+	"fmt"
+
+	"hello/cmd/root"
+	"hello/version"
+
+	"github.com/spf13/cobra"
+)
+
+var Cmd = &cobra.Command{
+	Use:     "version",
+	Short:   "Prints version",
+	Aliases: []string{"v"},
+	Args:    cobra.NoArgs,
+	Run: func(c *cobra.Command, args []string) {
+		fmt.Println(version.Version)
+	},
+}
+
+func init() {
+	root.Cmd.AddCommand(Cmd)
+}
+```
+
+Import version module in `cmd/cmd.go`:
+
+Add `_ "hello/cmd/version"` to imports
+
+```go
+package cmd
+
+import (
+	"hello/cmd/root"
+	_ "hello/cmd/version"
+
+	"github.com/spf13/cobra"
+)
+
+func Execute() {
+	cobra.CheckErr(root.Cmd.Execute())
+}
+```
+
+Commit changes:
+
+```
+git add .
+git commit -m "feat(cmd/version): Add version command"
+```
