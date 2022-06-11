@@ -1,4 +1,4 @@
-# go-cli-tool-workshop-2022
+# GO CLI Tool Workshop 2022
 
 ## Create repo & essentials
 
