@@ -417,6 +417,15 @@ git add .
 git commit -m "chore(goreleaser): Add .goreleaser.yml"
 ```
 
+## Create Organization & Repositories on Github
+
+- Create organization `go-cli-tool-workshop-2022`
+- Create repositories:
+  - `go-cli-tool-workshop-2022/hello`
+  - `go-cli-tool-workshop-2022/homebrew-tap`
+  - `go-cli-tool-workshop-2022/scoop-bucket`
+
+
 ## Push to Github
 
 ```
