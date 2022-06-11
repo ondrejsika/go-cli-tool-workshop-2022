@@ -423,3 +423,53 @@ git commit -m "chore(goreleaser): Add .goreleaser.yml"
 git remote add origin git@github.com:go-cli-tool-workshop-2022/hello.git
 git push -u origin master
 ```
+
+## Create Release
+
+Update `version/version.go`:
+
+```
+package version
+
+var Version string = "v0.1.0"
+```
+
+Commit changes:
+
+```
+git add .
+git commit -m "VERSION: v0.1.0"
+```
+
+Tag release:
+
+```
+git tag v0.1.0
+```
+
+Export Github token
+
+```
+export GITHUB_TOKEN=...
+```
+
+Build & release using Goreleaser
+
+```
+goreleaser
+```
+
+Update `version/version.go` after release:
+
+```
+package version
+
+var Version string = "v0.2.0-dev"
+```
+
+Commit changes:
+
+```
+git add .
+git commit -m "VERSION: v0.2.0-dev"
+```
