@@ -40,6 +40,11 @@ Create `.gitignore`:
 *.log
 *.backup
 
+# App
+/dist/**
+/hello
+/hello.exe
+
 ```
 
 Create `.editorconfig`:
