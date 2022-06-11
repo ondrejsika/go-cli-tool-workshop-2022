@@ -67,3 +67,16 @@ Commit changes
 git add .
 git commit -m "chore: Add editorconfig & gitignore"
 ```
+
+## Init Go Project
+
+```
+go mod init hello
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "chore(go): go mod init"
+```
