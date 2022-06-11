@@ -1,1 +1,69 @@
 # go-cli-tool-workshop-2022
+
+## Create repo & essentials
+
+```
+mkdir hello
+cd hello
+```
+
+Create Git repo
+
+```
+git init
+```
+
+Create `README.md`
+
+```markdown
+# hello cli
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "init: Initial commit"
+```
+
+Create `.gitignore`:
+
+```
+# Mac
+.DS_Store
+
+# Editor
+.vscode
+.idea
+
+# Generic
+*.log
+*.backup
+
+```
+
+Create `.editorconfig`:
+
+```
+root = true
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+max_line_length = off
+[Makefile]
+indent_style = tab
+[*.go]
+indent_style = tab
+
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "chore: Add editorconfig & gitignore"
+```
