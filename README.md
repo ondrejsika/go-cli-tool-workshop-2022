@@ -85,3 +85,38 @@ Commit changes
 git add .
 git commit -m "chore(go): go mod init"
 ```
+
+## Create Hello World
+
+Create `main.go`
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World!")
+}
+
+```
+
+Run
+
+```
+go run main.go
+```
+
+Build & run:
+
+```
+go build
+./hello
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "feat: Create Hello World functionality"
+```
