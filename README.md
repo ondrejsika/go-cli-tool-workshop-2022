@@ -416,3 +416,10 @@ Commit changes:
 git add .
 git commit -m "chore(goreleaser): Add .goreleaser.yml"
 ```
+
+## Push to Github
+
+```
+git remote add origin git@github.com:go-cli-tool-workshop-2022/hello.git
+git push -u origin master
+```
