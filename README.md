@@ -324,3 +324,95 @@ Commit changes:
 git add .
 git commit -m "feat(cmd/root): Add --name parameter"
 ```
+
+## Add Goreleaser
+
+Create `.goreleaser.yml`
+
+```yaml
+project_name: hello
+
+before:
+  hooks:
+    - rm -rf ./dist
+    - go mod tidy
+    - git push
+    - git push --tags
+builds:
+  -
+    env:
+      - CGO_ENABLED=0
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+    ldflags:
+      - -s
+      - -w
+      - -X hello/version.Version=v{{.Version}}
+    goos:
+      - windows
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - "386"
+      - arm
+      - arm64
+    goarm:
+      - "6"
+      - "7"
+    ignore:
+      - goos: darwin
+        goarch: "386"
+      - goos: windows
+        goarch: "arm"
+      - goos: windows
+        goarch: "arm64"
+      - goos: linux
+        goarch: arm
+        goarm: "6"
+    binary: "{{ .ProjectName }}"
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+release:
+  prerelease: auto
+
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+  algorithm: sha256
+
+brews:
+  -
+    name: "{{ .ProjectName }}"
+    tap:
+      owner: go-cli-tool-workshop-2022
+      name: homebrew-tap
+    homepage: https://github.com/go-cli-tool-workshop-2022/hello
+    url_template: "https://github.com/go-cli-tool-workshop-2022/hello/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    folder: Formula
+    caveats: "How to use this binary: https://github.com/go-cli-tool-workshop-2022/hello"
+    description: "Hello World CLI"
+    install: |
+      bin.install "{{ .ProjectName }}"
+    test: |
+      system "#{bin}/{{ .ProjectName }} version"
+
+scoop:
+  bucket:
+    owner: go-cli-tool-workshop-2022
+    name: scoop-bucket
+  homepage:  https://github.com/go-cli-tool-workshop-2022/hello
+  description: Hello World CLI
+  license: MIT
+
+```
+
+Commit changes:
+
+```
+git add .
+git commit -m "chore(goreleaser): Add .goreleaser.yml"
+```
