@@ -482,3 +482,25 @@ Commit changes:
 git add .
 git commit -m "VERSION: v0.2.0-dev"
 ```
+
+## Install
+
+Mac
+
+```
+brew install go-cli-tool-workshop-2022/tap/hello
+```
+
+Linux
+
+```
+VERSION=v0.1.0 && \
+OS=linux && \
+ARCH=amd64 && \
+ORG=go-cli-tool-workshop-2022 && \
+BIN=hello && \
+curl -fsSL https://github.com/${ORG}/${BIN}/releases/download/${VERSION}/${BIN}_${VERSION}_${OS}_${ARCH}.tar.gz -o ${BIN}_${VERSION}_${OS}_${ARCH}.tar.gz && \
+tar -xvzf ${BIN}_${VERSION}_${OS}_${ARCH}.tar.gz ${BIN} && \
+rm ${BIN}_${VERSION}_${OS}_${ARCH}.tar.gz && \
+mv ${BIN} /usr/local/bin/
+```
