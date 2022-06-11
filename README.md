@@ -120,3 +120,101 @@ Commit changes
 git add .
 git commit -m "feat: Create Hello World functionality"
 ```
+
+## Install Cobra
+
+Install Cobra
+
+```
+go get -u github.com/spf13/cobra@latest
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "chore(go): add cobra"
+```
+
+## Rewrite with Cobra
+
+mkdirs
+
+```
+mkdir cmd
+mkdir cmd/root
+mkdir version
+```
+
+Create `version/version.go`
+
+```go
+package version
+
+var Version string = "v0.1.0-dev"
+```
+
+Create `cmd/root/root.go`
+
+```go
+package root
+
+import (
+	"fmt"
+	"hello/version"
+
+	"github.com/spf13/cobra"
+)
+
+var Cmd = &cobra.Command{
+	Use:   "hello",
+	Short: "hello, " + version.Version,
+	Args:  cobra.NoArgs,
+	Run: func(c *cobra.Command, args []string) {
+		fmt.Println("Hello World!")
+	},
+}
+```
+
+Create `cmd/cmd.go`
+
+```go
+package cmd
+
+import (
+	"hello/cmd/root"
+
+	"github.com/spf13/cobra"
+)
+
+func Execute() {
+	cobra.CheckErr(root.Cmd.Execute())
+}
+```
+
+Update `main.go`
+
+```go
+package main
+
+import (
+	"hello/cmd"
+)
+
+func main() {
+	cmd.Execute()
+}
+```
+
+Clean `mod.go`:
+
+```
+go mod tidy
+```
+
+Commit changes
+
+```
+git add .
+git commit -m "refactor: Rewrite using Cobra"
+```
